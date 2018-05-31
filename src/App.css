@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+}
+
+.App-title {
+  font-size: 100px;
+  font-weight:100;
+  color: #EAD7D8;
+}
+
+.todos-writingSpace {
+  height:35px;
+  width:350px;
+  border:solid 1px 1px 1px 0 #E6E6E6;
+  box-shadow: 1px 3px 1px 0 #DADADA;
+  font-style: italic;
+}
+
+.todos-writingSpace::placeholder {
+  color:#EEEEEE;
+  font-size:20px;
+}
+
+.button{
+  height:35px;
+  width:50px;
+  color:#E6E6E6;
+  background: white;
+  border: solid 1px #E6E6E6;
+  border-width: 1px 0 1px 1px;
+
+  box-shadow: 1px 0 1px 3px #DADADA;
+  font-size:20px;
+  font-weight: bold;
+}
+
+.itemList {
+  height:35px;
+  width:380px;
+  border:solid 1px black;
+  margin:auto;
+  list-style: none;
+}
+
+
