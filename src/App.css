@@ -15,9 +15,8 @@
   width:350px;
   border:solid 1px #E6E6E6;
   border-width: 1px 1px 1px 0;
-  /*box-shadow: 1px 3px 1px 0 #DADADA;*/
   font-style: italic;
-  outline:none;  /*kasuje niebieskie podswietlenie inputu*/
+  outline:none; 
   padding:0;
 }
 
@@ -31,42 +30,15 @@
   width:50px;
   color:#E6E6E6;
   background: white;
-  border: solid 1px #E6E6E6; /*mozna ustawic tylko 1 wymiar*/
-  border-width: 1px 0 1px 1px; /*wymiary ramki*/
-  /*box-shadow: 1px 0 1px 3px #DADADA;*/
+  border: solid 1px #E6E6E6; 
+  border-width: 1px 0 1px 1px; 
   font-size:20px;
   font-weight: bold;
   padding:0;
-  box-sizing:content-box;/*nie dodaje do wymiarow calkowitych paddingu itp.*/
+  box-sizing:content-box;
   outline:none;
 }
-/*
 
-.todo:nth-child(1) 
-  pierwsze dziecko, to samo co :first-child (w CSS liczymy od 1, nie od 0!)
-
-.todo:nth-child(2)
-  drugie dziecko 
-
-.todo:nth-child(odd)
-  kazde nieparzyste dziecko
-
-.todo:nth-child(even)
-  kazde parzyste dziecko
-
-  Mozna tez pisac wzor matematyczny z n postaci An+B, ktory dopasowuje elementy bedace
-  wynikami tego wzoru, gdy dla n podstawiamy 0, 1, 2, 3...
-
-  Np.
-  :nth-child(2n)
-    Dopasowuje 2, 4, 6, 8... (czyli jak even)
-
-  :nth-child(2n+1)
-    Dopasowuje 1, 3, 5, 7... (czyli jak odd)
-
-  p:nth-child(n+8):nth-child(-n+15)
-  https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child
-*/
 .todo {
   height:35px;
   width:400px;
