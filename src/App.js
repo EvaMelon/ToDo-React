@@ -3,31 +3,32 @@ import './reset.css';
 import './App.css';
 import './oop'; 
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state={
       items:[{text:"g", done:false}, {text:"u", done:false}]
     };
+    this.state={
+      className="button"}
   }
-  // Tak deklarujemy metody, ktore chcemy przekazac innym komponentom np. w onKeyPress etc.
-  handleKeyPress = (event) => { //event listener onkeypress
+  
+  handleKeyPress = (event) => { 
     const enterKey = 13;
     if (event.which == enterKey) {
       const items = this.state.items;
       const newItem = {text:event.target.value, done:false};
-      const newItems = items.concat(newItem); //zwraca tablice, ktora jest sklejeniem items i argumentow, ktore przekazesz
+      const newItems = items.concat(newItem); 
       this.setState({
         items: newItems
       });
       event.target.value="";
     }
   }
+
   renderItems() {
     const items = [];
-    for(let i=0; i<this.state.items.length; i++) {
+    for(let i = 0; i < this.state.items.length; i++) {
         let itemArray = <TodoItem text={this.state.items[i].text} />;
         items.push(itemArray);
     }
@@ -40,7 +41,7 @@ class App extends Component {
         <h1 className="App-title">todos</h1>
         <div className="fieldSet">
           <button type="button" className="button" 
-          onClick={this.buttonColorChange()}>v</button>
+          onClick={this.buttonColorChange}>v</button>
           <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
                  onKeyPress={this.handleKeyPress}/>
         </div>
@@ -49,7 +50,6 @@ class App extends Component {
         </div>
       </div>
     );
-    
   }
 }
 
@@ -63,17 +63,7 @@ class TodoItem extends React.Component {
    return (
      <div className="todo">{this.props.text}</div>
    );
-
  }
 }
 
-
-
 export default App;
-
-//znalzec przycisk i zmienic mu kolor na czarny po kliknieciu, bedzie mial dodawana klase z kolorem
-
-
-
-
-
