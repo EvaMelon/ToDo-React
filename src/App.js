@@ -9,9 +9,10 @@ class App extends Component {
     this.state={
       items:[{text:"g", done:false}, {text:"u", done:false}]
     };
-    this.state={
-      className="button"}
   }
+  //  this.state={
+    //  className="button"}
+ // }
   
   handleKeyPress = (event) => { 
     const enterKey = 13;
@@ -35,6 +36,12 @@ class App extends Component {
     return items;
   }
 
+  // zle
+  // buttonColorChange = (event) => {
+  //   const button = this.button;
+  //   button.onClick.classList.add("blackButton");
+  // }
+
   render() {
     return (
       <div className="App">
@@ -51,11 +58,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-buttonColorChange = (event) => {
-  const button = this.button;
-  button.onClick.classList.add("blackButton");
 }
 
 class TodoItem extends React.Component {
