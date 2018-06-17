@@ -56,4 +56,18 @@
   color:black;
 }
 
+.checkbox {
+  position:absolute;
+}
+
+.check-container {
+  display: flex;
+  position: relative;
+}
+
+.done {
+  color:#D9D9D9;
+  text-decoration:line-through;
+}
+
 

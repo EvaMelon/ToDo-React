@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import './reset.css';
 import './App.css';
 import './oop'; 
@@ -7,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={
-      items:[{text:"g", done:false}, {text:"u", done:false}]
+      items:[{text:"g", done:true}, {text:"u", done:false}]
     };
   }
   //  this.state={
@@ -27,32 +28,48 @@ class App extends Component {
     }
   }
 
+  handleToggleItem = (index) => {
+    const oldItems = this.state.items;
+    const updatedItems = [];
+    for (let i = 0; i < oldItems.length; i++) {
+      if (i == index) {
+        const itemToUpdate = oldItems[index];
+        const updatedItem = {...itemToUpdate, done:!itemToUpdate.done};
+        updatedItems.push(updatedItem);
+      }
+      else {
+        updatedItems.push(oldItems[i]);
+      }
+    }
+    this.setState({
+      items: updatedItems
+    });
+  }
+
   renderItems() {
     const items = [];
     for(let i = 0; i < this.state.items.length; i++) {
-        let itemArray = <TodoItem text={this.state.items[i].text} />;
+        let itemArray = <TodoItem
+                          text={this.state.items[i].text}
+                          done={this.state.items[i].done}
+                          onToggle={() => { this.handleToggleItem(i)} }
+                        />;
         items.push(itemArray);
     }
     return items;
   }
-
-  // zle
-  // buttonColorChange = (event) => {
-  //   const button = this.button;
-  //   button.onClick.classList.add("blackButton");
-  // }
 
   render() {
     return (
       <div className="App">
         <h1 className="App-title">todos</h1>
         <div className="fieldSet">
-          <button type="button" className="button" 
-          onClick={this.buttonColorChange}>v</button>
+          <ButtonColorChange>v</ButtonColorChange>
           <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
                  onKeyPress={this.handleKeyPress}/>
         </div>
         <div className="items-section">
+        
           {this.renderItems()}
         </div>
       </div>
@@ -63,9 +80,49 @@ class App extends Component {
 class TodoItem extends React.Component {
  render() {
    return (
-     <div className="todo">{this.props.text}</div>
+      <div 
+      className={
+        classNames({
+          "todo":true,
+          "done": this.props.done
+          //w JS do false jest obliczne (falsy): null, undefined, 0, NaN, "", false.
+          //Wszystko inne do true (truthy)
+        })}>
+        <label className="check-container">
+          <span className="checkmark"></span>
+          <input 
+            type="checkbox" className="checkbox" checked={this.props.done}
+            onChange={this.props.onToggle}
+          /> 
+        </label>
+        <span>{this.props.text}</span>     
+     </div>
    );
  }
+}
+
+class ButtonColorChange extends React.Component {
+  state = {
+    isBlack:false
+  }
+
+  handleClick = (event) => { 
+    this.setState({
+      isBlack:!this.state.isBlack
+    });
+  }
+
+  render() {
+    return (
+      <button
+      className={classNames({
+        "button":true,
+        "blackButton": this.state.isBlack
+      })}
+      onClick={(this.handleClick)}>{this.props.children} { /* class maja this*/ }
+      </button>
+    )
+  }
 }
 
 export default App;
