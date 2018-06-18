@@ -88,11 +88,11 @@ class TodoItem extends React.Component {
           //Wszystko inne do true (truthy)
         })}>
         <label className="check-container">
-          <span className="checkmark"></span>
-          <input 
-            type="checkbox" className="checkbox" checked={this.props.done}
-            onChange={this.props.onToggle}
-          /> 
+            <input 
+              type="checkbox" className="checkbox" checked={this.props.done}
+              onChange={this.props.onToggle}
+            /> 
+            <span className="checkmark"></span>
         </label>
         <span className="items-section">{this.props.text}</span>     
      </div>
