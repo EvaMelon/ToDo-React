@@ -69,7 +69,6 @@ class App extends Component {
                  onKeyPress={this.handleKeyPress}/>
         </div>
         <div className="items-section">
-        
           {this.renderItems()}
         </div>
       </div>
