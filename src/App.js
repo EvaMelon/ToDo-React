@@ -71,6 +71,17 @@ class App extends Component {
         <div>
           {this.renderItems()}
         </div>
+
+    {/*    <section className="itemCounter-section">
+          <span>0 items left</span>
+          <span>All</span>
+          <span>Active</span>
+          <span>Completed</span>
+          <span>Completed</span>
+          <span>Clear completed</span>
+    </section> */}
+
+
       </div>
     );
   }
@@ -79,23 +90,33 @@ class App extends Component {
 class TodoItem extends React.Component {
  render() {
    return (
-      <div 
+  <div>
+
+    <div 
       className={
         classNames({
           "todo":true,
           "done": this.props.done
           //w JS do false jest obliczne (falsy): null, undefined, 0, NaN, "", false.
           //Wszystko inne do true (truthy)
-        })}>
-        <label className="check-container">
-            <input 
-              type="checkbox" className="checkbox" checked={this.props.done}
-              onChange={this.props.onToggle}
-            /> 
-            <span className="checkmark"></span>
-        </label>
-        <span className="items-section">{this.props.text}</span>     
-     </div>
+      })}>
+
+      <label className="check-container">
+          <input 
+            type="checkbox" className="checkbox" checked={this.props.done}
+            onChange={this.props.onToggle}
+          /> 
+          <span className="checkmark"></span>
+      </label>
+
+      <span className="items-section">{this.props.text}</span>
+
+    </div>
+
+  </div>
+
+    
+    
    );
  }
 }
