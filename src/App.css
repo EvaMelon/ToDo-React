@@ -91,6 +91,7 @@ div.done {
 
 .check-container input:checked ~ .checkmark {
   background-color:#D9E9E6;
+  border: 1px solid#D9E9E6;
 }
 
 .checkmark:after {
@@ -104,10 +105,10 @@ div.done {
 }
 
 .check-container .checkmark:after {
-  top: 2px;
-  left: 2px;
-  width: 21px;
-  height: 21px;
+  top: 1px;
+  left: 1px;
+  width: 20px;
+  height: 20px;
   background-image: url("./image/tick.png");
   border-radius:50%;
 }
@@ -116,10 +117,9 @@ div.done {
   position: absolute;
   left: 10px;
   top:5px;
-  height: 25px;
-  width: 25px;
-  background-color: lightgrey;
+  height: 22px;
+  width: 22px;
+  border: 1px solid #EDEDED;
   border-radius: 50%;
-
 }
 
