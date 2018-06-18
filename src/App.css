@@ -77,17 +77,11 @@ div.done {
 }
 
 .check-container {
-  display: flex;
-  position: relative;
   display: block;
-  
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
-  cursor: pointer;
   font-size: 22px;
-  user-select: none;
-
 }
 
 .check-container input {
@@ -95,22 +89,8 @@ div.done {
   opacity: 0;
 }
 
-.checkmark{
-  position: absolute;
-  left: 10px;
-  top:5px;
-  height: 25px;
-  width: 25px;
-  background-color: lightgrey;
-  border-radius: 50%;
-}
-
-/*.check-container:hover input ~ .checkmark {
-  background-color: #ccc;
-}*/
-
 .check-container input:checked ~ .checkmark {
-  background-color:green
+  background-color:#D9E9E6;
 }
 
 .checkmark:after {
@@ -130,5 +110,16 @@ div.done {
   height: 21px;
   background-image: url("./image/tick.png");
   border-radius:50%;
-  /*background:green;*/
 }
+
+.checkmark{
+  position: absolute;
+  left: 10px;
+  top:5px;
+  height: 25px;
+  width: 25px;
+  background-color: lightgrey;
+  border-radius: 50%;
+
+}
+
