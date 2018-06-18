@@ -68,7 +68,7 @@ class App extends Component {
           <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
                  onKeyPress={this.handleKeyPress}/>
         </div>
-        <div className="items-section">
+        <div>
           {this.renderItems()}
         </div>
       </div>
@@ -94,7 +94,7 @@ class TodoItem extends React.Component {
             onChange={this.props.onToggle}
           /> 
         </label>
-        <span>{this.props.text}</span>     
+        <span className="items-section">{this.props.text}</span>     
      </div>
    );
  }
