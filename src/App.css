@@ -12,7 +12,7 @@
 
 .todos-writingSpace {
   height:35px;
-  width:350px;
+  width:500px;
   border:solid 1px #E6E6E6;
   border-width: 1px 1px 1px 0;
   font-style: italic;
@@ -41,7 +41,7 @@
 
 .todo {
   height:35px;
-  width:400px;
+  width:550px;
   border:solid 1px #EDEDED;
   margin:auto;
   list-style: none;
@@ -123,8 +123,50 @@ div.done {
 }
 
 .itemCounter-section {
-  border:1px solid black;
+  position: relative;
   height:35px;
-  width:400px;
+  width:550px;
+  border: 1px solid #EDEDED;
+  margin:auto;
+  padding-top: 10px
+}
+
+.itemCounter-element {
+  padding:5px;
+  color:#B7B7B7;
+  position:absolute;
+}
+
+.items-left {
+  left:0;
+}
+
+.clear{
+  right:0;
+ }
+
+.all {
+ left: 150px;
+}
+
+.active {
+  left: 200px;
+}
+
+.completed {
+  left: 270px;
+}
+
+.active:hover,
+.completed:hover,
+.all:hover {
+  border: 1px solid #EFD6D6;
+  border-radius: 5px;
+}
+
+.active,
+.completed,
+.all {
+  border: 1px solid white;
 }
 

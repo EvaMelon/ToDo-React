@@ -11,9 +11,6 @@ class App extends Component {
       items:[{text:"g", done:true}, {text:"u", done:false}]
     };
   }
-  //  this.state={
-    //  className="button"}
- // }
   
   handleKeyPress = (event) => { 
     const enterKey = 13;
@@ -46,6 +43,22 @@ class App extends Component {
     });
   }
 
+  countCompletedItems() {
+    const items = this.state.items;
+    let itemsCount = 0;
+    for(let i = 0; i < items.length; i++) {
+      if(items[i].done == false) {
+        itemsCount++;
+      }
+    }
+    if (itemsCount != 1) {
+      return itemsCount + " items left";
+    }
+    else {
+      return itemsCount + " item left";
+    }
+  }
+
   renderItems() {
     const items = [];
     for(let i = 0; i < this.state.items.length; i++) {
@@ -72,14 +85,16 @@ class App extends Component {
           {this.renderItems()}
         </div>
 
-    {/*    <section className="itemCounter-section">
-          <span>0 items left</span>
-          <span>All</span>
-          <span>Active</span>
-          <span>Completed</span>
-          <span>Completed</span>
-          <span>Clear completed</span>
-    </section> */}
+        <section className="itemCounter-section">
+          <span className="itemCounter-element items-left">
+            {this.countCompletedItems()}</span>
+          <span className="itemCounter-element all">All</span>
+          <span className="itemCounter-element active">Active</span>
+          <span className="itemCounter-element completed">Completed</span>
+          <span className="itemCounter-element clear">Clear completed</span>
+        </section> 
+
+     
 
 
       </div>
