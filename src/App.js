@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // filter: "all",
+      filter: "all",
       items:[{text:"g", done:true}, {text:"u", done:false}]
     };
   }
@@ -62,13 +62,22 @@ class App extends Component {
 
   renderItems() {
     const items = [];
-    for(let i = 0; i < this.state.items.length; i++) {
-        let itemArray = <TodoItem
-                          text={this.state.items[i].text}
-                          done={this.state.items[i].done}
-                          onToggle={() => { this.handleToggleItem(i)} }
-                        />;
-        items.push(itemArray);
+    for (let i = 0; i < this.state.items.length; i++) {
+      let item = this.state.items[i];
+      const todo = <TodoItem
+        text={item.text}
+        done={item.done}
+        onToggle={() => { this.handleToggleItem(i)} }
+      />;
+      if(this.state.filter === "active" && !item.done ) {
+        items.push(todo);
+      }
+      else if (this.state.filter === "completed" && item.done) {
+        items.push(todo);
+      }
+      else if (this.state.filter === "all"){
+        items.push(todo);
+      }
     }
     return items;
   }
@@ -121,14 +130,11 @@ class App extends Component {
           >Completed</button>
           <button className="itemCounter-element clear">Clear completed</button>
         </section> 
-
-     
-
-
       </div>
     );
   }
 }
+
 
 class TodoItem extends React.Component {
  render() {
