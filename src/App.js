@@ -7,7 +7,8 @@ import './oop';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
+      // filter: "all",
       items:[{text:"g", done:true}, {text:"u", done:false}]
     };
   }
@@ -72,6 +73,12 @@ class App extends Component {
     return items;
   }
 
+  setFilter(filter) {
+    this.setState({
+      filter: filter
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -88,9 +95,30 @@ class App extends Component {
         <section className="itemCounter-section">
           <span className="itemCounter-element items-left">
             {this.countCompletedItems()}</span>
-          <span className="itemCounter-element all">All</span>
-          <span className="itemCounter-element active">Active</span>
-          <span className="itemCounter-element completed">Completed</span>
+          <span
+            className={classNames({
+              "itemCounter-element":true,
+              "all":true,
+              "selected": this.state.filter === "all"
+            })}
+            onClick={()=>{this.setFilter("all")}}
+          >All
+          </span>
+          <span className={classNames({
+            "itemCounter-element":true,
+            "active":true,
+            "selected": this.state.filter === "active"
+          })}
+          onClick={()=>{this.setFilter("active")}}
+          >Active
+          </span>
+          <span className={classNames({
+             "itemCounter-element":true,
+            "completed":true,
+            "selected": this.state.filter === "completed"
+          })}
+          onClick={()=>{this.setFilter("completed")}}
+          >Completed</span>
           <span className="itemCounter-element clear">Clear completed</span>
         </section> 
 
@@ -106,7 +134,6 @@ class TodoItem extends React.Component {
  render() {
    return (
   <div>
-
     <div 
       className={
         classNames({
@@ -150,14 +177,60 @@ class ButtonColorChange extends React.Component {
   render() {
     return (
       <button
-      className={classNames({
-        "button":true,
-        "blackButton": this.state.isBlack
-      })}
-      onClick={(this.handleClick)}>{this.props.children} { /* class maja this*/ }
+        className={classNames({
+          "button":true,
+          "blackButton": this.state.isBlack
+        })}
+        onClick={(this.handleClick)}>{this.props.children} { /* class maja this*/ }
       </button>
-    )
+    );
   }
+
+
+  // render() {
+  //   // var l = (0 ? 1 : 2) + 3*f() +aaa;
+
+  //   // f();
+    
+
+  //   // var o = {
+  //   //   pp: {
+  //   //     zzz: 42
+  //   //   }
+  //   // };
+
+  //   return (
+  //     <div>
+  //       <span
+  //         className={classNames({
+  //           "itemCounter-element":true,
+  //           "all":true,
+  //           "click":false
+  //         })}
+  //         onClick={}
+  //       >
+  //       </span>
+  //       <span
+  //       className={classNames({
+  //         "itemCounter-element":true,
+  //         "all":true,
+  //         "click":true
+  //       })} >
+  //       </span>
+  //     </div>
+  //   )
+  // }
+  
+  
+  
+  
+
+
+
+
+
+
 }
+
 
 export default App;

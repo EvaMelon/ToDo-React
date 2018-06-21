@@ -160,7 +160,7 @@ div.done {
 .active:hover,
 .completed:hover,
 .all:hover {
-  border: 1px solid #EFD6D6;
+  border: 1px solid #F6E8E8;
   border-radius: 5px;
 }
 
@@ -168,5 +168,10 @@ div.done {
 .completed,
 .all {
   border: 1px solid white;
+}
+
+.itemCounter-element.selected {
+  border: 1px solid #EFD6D6;
+  border-radius: 5px;
 }
 
