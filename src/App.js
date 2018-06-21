@@ -95,7 +95,7 @@ class App extends Component {
         <section className="itemCounter-section">
           <span className="itemCounter-element items-left">
             {this.countCompletedItems()}</span>
-          <span
+          <button
             className={classNames({
               "itemCounter-element":true,
               "all":true,
@@ -103,23 +103,23 @@ class App extends Component {
             })}
             onClick={()=>{this.setFilter("all")}}
           >All
-          </span>
-          <span className={classNames({
+          </button>
+          <button className={classNames({
             "itemCounter-element":true,
             "active":true,
             "selected": this.state.filter === "active"
           })}
           onClick={()=>{this.setFilter("active")}}
           >Active
-          </span>
-          <span className={classNames({
+          </button>
+          <button className={classNames({
              "itemCounter-element":true,
             "completed":true,
             "selected": this.state.filter === "completed"
           })}
           onClick={()=>{this.setFilter("completed")}}
-          >Completed</span>
-          <span className="itemCounter-element clear">Clear completed</span>
+          >Completed</button>
+          <button className="itemCounter-element clear">Clear completed</button>
         </section> 
 
      

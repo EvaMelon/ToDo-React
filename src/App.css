@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   padding-top:30px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .App-title {
@@ -128,7 +129,8 @@ div.done {
   width:550px;
   border: 1px solid #EDEDED;
   margin:auto;
-  padding-top: 10px
+  padding-top: 10px;
+  font-size:15px;
 }
 
 .itemCounter-element {
@@ -141,10 +143,14 @@ div.done {
   left:0;
 }
 
-.clear{
+.clear {
   right:0;
+  border:none;
  }
 
+.clear:hover {
+  text-decoration: underline;
+}
 .all {
  left: 150px;
 }
@@ -173,5 +179,11 @@ div.done {
 .itemCounter-element.selected {
   border: 1px solid #EFD6D6;
   border-radius: 5px;
+}
+
+button { 
+  outline: none;
+  font-family: inherit;
+  font-size:inherit;
 }
 
