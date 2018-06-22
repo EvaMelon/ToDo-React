@@ -78,6 +78,9 @@ class App extends Component {
       else if (this.state.filter === "all"){
         items.push(todo);
       }
+      else if (this.state.filter === "clear" && !item.done) {
+        items.push(todo);
+      } 
     }
     return items;
   }
@@ -122,13 +125,16 @@ class App extends Component {
           >Active
           </button>
           <button className={classNames({
-             "itemCounter-element":true,
+            "itemCounter-element":true,
             "completed":true,
             "selected": this.state.filter === "completed"
           })}
           onClick={()=>{this.setFilter("completed")}}
           >Completed</button>
-          <button className="itemCounter-element clear">Clear completed</button>
+
+          <button className="itemCounter-element clear"
+          onClick={()=>{this.setFilter("clear")}}
+          >Clear completed</button>
         </section> 
       </div>
     );
