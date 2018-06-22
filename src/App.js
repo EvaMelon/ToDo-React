@@ -100,7 +100,7 @@ class App extends Component {
           <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
                  onKeyPress={this.handleKeyPress}/>
         </div>
-        <div>
+        <div className="items">
           {this.renderItems()}
         </div>
 
