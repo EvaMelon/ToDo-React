@@ -26,9 +26,9 @@ class App extends Component {
     }
   }
 
-  onMouse = () => {
-    
-  }
+  //onMouse = () => {
+
+  //}
 
   handleToggleItem = (index) => {
     console.log(">>>handleToggleItem");

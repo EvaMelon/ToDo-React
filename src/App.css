@@ -196,15 +196,16 @@ button.itemCounter-element {
 
 .button-x {
   color:#D3A9AB;
-  /*opacity:0;*/
+  opacity:0;
   border:none;
   background: none;
   font-size:20px;
   text-decoration:none;
   outline: none;
-  
 }
 
-/*.button-x:hover {
-  opacity:1;
-}*/
+.todo:hover .button-x {
+ opacity:1;
+}
+
+
