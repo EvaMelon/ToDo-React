@@ -26,7 +26,12 @@ class App extends Component {
     }
   }
 
+  onMouse = () => {
+    
+  }
+
   handleToggleItem = (index) => {
+    console.log(">>>handleToggleItem");
     const oldItems = this.state.items;
     const updatedItems = [];
     for (let i = 0; i < oldItems.length; i++) {
@@ -59,6 +64,20 @@ class App extends Component {
       return itemsCount + " item left";
     }
   }
+
+  clearCompleted = () => {
+    const leftItems = [];
+    const items = this.state.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].done == false) {
+        leftItems.push(items[i]);
+      }
+    }
+    this.setState({
+      items: leftItems
+    });
+  }
+  
 
   renderItems() {
     const items = [];
@@ -101,8 +120,12 @@ class App extends Component {
                  onKeyPress={this.handleKeyPress}/>
         </div>
         <div className="items">
-          {this.renderItems()}
+        
+          {this.renderItems()} 
+       
+
         </div>
+
 
         <section className="itemCounter-section">
           <span className="itemCounter-element items-left">
@@ -133,7 +156,9 @@ class App extends Component {
           >Completed</button>
 
           <button className="itemCounter-element clear"
-          onClick={()=>{this.setFilter("clear")}}
+         /* onClick={()=>{this.setFilter("clear")}}*/
+         onClick={this.clearCompleted} 
+         //funkcja
           >Clear completed</button>
         </section> 
       </div>
@@ -145,7 +170,6 @@ class App extends Component {
 class TodoItem extends React.Component {
  render() {
    return (
-  <div>
     <div 
       className={
         classNames({
@@ -154,7 +178,6 @@ class TodoItem extends React.Component {
           //w JS do false jest obliczne (falsy): null, undefined, 0, NaN, "", false.
           //Wszystko inne do true (truthy)
       })}>
-
       <label className="check-container">
           <input 
             type="checkbox" className="checkbox" checked={this.props.done}
@@ -162,15 +185,13 @@ class TodoItem extends React.Component {
           /> 
           <span className="checkmark"></span>
       </label>
-
-      <span className="items-section">{this.props.text}</span>
-
+      <span className="todo-text">
+        {this.props.text}
+      </span>
+      <button className="button-x"
+   //   onMouseOver={this.props.onMouse}
+      >X</button>
     </div>
-
-  </div>
-
-    
-    
    );
  }
 }
@@ -198,51 +219,6 @@ class ButtonColorChange extends React.Component {
     );
   }
 
-
-  // render() {
-  //   // var l = (0 ? 1 : 2) + 3*f() +aaa;
-
-  //   // f();
-    
-
-  //   // var o = {
-  //   //   pp: {
-  //   //     zzz: 42
-  //   //   }
-  //   // };
-
-  //   return (
-  //     <div>
-  //       <span
-  //         className={classNames({
-  //           "itemCounter-element":true,
-  //           "all":true,
-  //           "click":false
-  //         })}
-  //         onClick={}
-  //       >
-  //       </span>
-  //       <span
-  //       className={classNames({
-  //         "itemCounter-element":true,
-  //         "all":true,
-  //         "click":true
-  //       })} >
-  //       </span>
-  //     </div>
-  //   )
-  // }
-  
-  
-  
-  
-
-
-
-
-
-
 }
-
 
 export default App;
