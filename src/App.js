@@ -13,6 +13,23 @@ class App extends Component {
       buttonClicked:false
     };
   }
+
+  deleteItem = (index) => {
+    const leftItems = [];
+    const deletedItems = [];
+    const allItems = this.state.items;
+    for (let i = 0; i < allItems.length; i++) {
+      if(i == index) {
+        deletedItems.push(allItems[i]);
+      }
+      else if (i != index) {
+        leftItems.push(allItems[i]);
+      }
+    }
+    this.setState({
+      items: leftItems
+    });
+  }
   
   handleKeyPress = (event) => { 
     const enterKey = 13;
@@ -28,7 +45,6 @@ class App extends Component {
   }
 
   handleToggleItem = (index) => {
-    console.log(">>>handleToggleItem");
     const oldItems = this.state.items;
     const updatedItems = [];
     for (let i = 0; i < oldItems.length; i++) {
@@ -89,6 +105,7 @@ class App extends Component {
         text={item.text}
         done={item.done}
         onToggle={() => { this.handleToggleItem(i)} }
+        onDelete={() => { this.deleteItem(i)} }
       />;
       if (this.state.filter === "active" && !item.done ) {
         items.push(todo);
@@ -164,20 +181,9 @@ class App extends Component {
   }
 }
 
+
+
 class TodoItem extends React.Component {
-
-  deleteItems = () => {
-    const deletedItems = [];
-    const items = this.state.items;
-    for (let i = 0; i < items.length; i++) {
-        deletedItems.push(items[i]);
-      }
-    
-    this.setState({
-      items: deletedItems
-    });
-  }
-
   render() {
    return (
     <div 
@@ -196,8 +202,11 @@ class TodoItem extends React.Component {
       <span className="todo-text">
         {this.props.text}
       </span>
-      <button className="button-x"
-      onClick={this.deleteItems}
+      <button className={classNames({
+          "button-x":true,
+        //  "deleteItems":this.state.filter === "deleted"
+      })}
+      onClick={this.props.onDelete}
       >X</button>
     </div>
    );
