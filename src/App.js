@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       filter: "all",
-      items:[{text:"g", done:true}, {text:"u", done:false}]
+      items:[{text:"g", done:true}, {text:"u", done:false}],
+      buttonClicked:false
     };
   }
   
@@ -25,10 +26,6 @@ class App extends Component {
       event.target.value="";
     }
   }
-
-  //onMouse = () => {
-
-  //}
 
   handleToggleItem = (index) => {
     console.log(">>>handleToggleItem");
@@ -47,6 +44,12 @@ class App extends Component {
     this.setState({
       items: updatedItems
     });
+  }
+
+  handleButtonColorChange = () => {
+    this.setState({
+      buttonClicked:!this.state.buttonClicked
+    })
   }
 
   countCompletedItems() {
@@ -78,7 +81,6 @@ class App extends Component {
     });
   }
   
-
   renderItems() {
     const items = [];
     for (let i = 0; i < this.state.items.length; i++) {
@@ -88,7 +90,7 @@ class App extends Component {
         done={item.done}
         onToggle={() => { this.handleToggleItem(i)} }
       />;
-      if(this.state.filter === "active" && !item.done ) {
+      if (this.state.filter === "active" && !item.done ) {
         items.push(todo);
       }
       else if (this.state.filter === "completed" && item.done) {
@@ -97,9 +99,6 @@ class App extends Component {
       else if (this.state.filter === "all"){
         items.push(todo);
       }
-      else if (this.state.filter === "clear" && !item.done) {
-        items.push(todo);
-      } 
     }
     return items;
   }
@@ -110,22 +109,24 @@ class App extends Component {
     });
   }
 
-  render() {
+   render() {
     return (
       <div className="App">
         <h1 className="App-title">todos</h1>
         <div className="fieldSet">
-          <ButtonColorChange>v</ButtonColorChange>
+        <button className={classNames({
+          "v-button":true,
+          "blackButton":this.state.buttonClicked
+        })}
+            onClick={this.handleButtonColorChange}
+        >v</button>
           <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
                  onKeyPress={this.handleKeyPress}/>
         </div>
+
         <div className="items">
-        
           {this.renderItems()} 
-       
-
         </div>
-
 
         <section className="itemCounter-section">
           <span className="itemCounter-element items-left">
@@ -154,11 +155,8 @@ class App extends Component {
           })}
           onClick={()=>{this.setFilter("completed")}}
           >Completed</button>
-
           <button className="itemCounter-element clear"
-         /* onClick={()=>{this.setFilter("clear")}}*/
-         onClick={this.clearCompleted} 
-         //funkcja
+          onClick={this.clearCompleted} 
           >Clear completed</button>
         </section> 
       </div>
@@ -166,17 +164,27 @@ class App extends Component {
   }
 }
 
-
 class TodoItem extends React.Component {
- render() {
+
+  deleteItems = () => {
+    const deletedItems = [];
+    const items = this.state.items;
+    for (let i = 0; i < items.length; i++) {
+        deletedItems.push(items[i]);
+      }
+    
+    this.setState({
+      items: deletedItems
+    });
+  }
+
+  render() {
    return (
     <div 
       className={
         classNames({
           "todo":true,
           "done": this.props.done
-          //w JS do false jest obliczne (falsy): null, undefined, 0, NaN, "", false.
-          //Wszystko inne do true (truthy)
       })}>
       <label className="check-container">
           <input 
@@ -189,36 +197,11 @@ class TodoItem extends React.Component {
         {this.props.text}
       </span>
       <button className="button-x"
-   //   onMouseOver={this.props.onMouse}
+      onClick={this.deleteItems}
       >X</button>
     </div>
    );
  }
-}
-
-class ButtonColorChange extends React.Component {
-  state = {
-    isBlack:false
-  }
-
-  handleClick = (event) => { 
-    this.setState({
-      isBlack:!this.state.isBlack
-    });
-  }
-
-  render() {
-    return (
-      <button
-        className={classNames({
-          "button":true,
-          "blackButton": this.state.isBlack
-        })}
-        onClick={(this.handleClick)}>{this.props.children} { /* class maja this*/ }
-      </button>
-    );
-  }
-
 }
 
 export default App;

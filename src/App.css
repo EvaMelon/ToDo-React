@@ -26,7 +26,7 @@
   font-size:20px;
 }
 
-.button{
+.v-button{
   height:35px;
   width:50px;
   color:#E6E6E6;
@@ -158,6 +158,7 @@
 .clear:hover {
   text-decoration: underline;
 }
+
 .all {
  left: 150px;
 }
@@ -207,5 +208,3 @@ button.itemCounter-element {
 .todo:hover .button-x {
  opacity:1;
 }
-
-
