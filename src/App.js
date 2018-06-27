@@ -75,6 +75,18 @@ class App extends Component {
     })
   }
 
+  areAllItemsDone() {
+    let allDone = true;
+    const items = this.state.items;
+    for(let i=0; i<items.length; i++) {
+      if(items[i].done == false) {
+        allDone = false;
+      }
+    }
+    return allDone;
+  }
+    
+
   countCompletedItems() {
     const items = this.state.items;
     let itemsCount = 0;
