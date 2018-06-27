@@ -63,7 +63,14 @@ class App extends Component {
   }
 
   handleButtonColorChange = () => {
+    const items = this.state.items;
+    const doneItems = [];
+    for(let i=0; i<items.length; i++) {
+      const doneItem = {...items[i], done:true};
+      doneItems.push(doneItem);
+    }
     this.setState({
+      items: doneItems,
       buttonClicked:!this.state.buttonClicked
     })
   }
@@ -203,8 +210,7 @@ class TodoItem extends React.Component {
         {this.props.text}
       </span>
       <button className={classNames({
-          "button-x":true,
-        //  "deleteItems":this.state.filter === "deleted"
+          "button-x":true
       })}
       onClick={this.props.onDelete}
       >X</button>
