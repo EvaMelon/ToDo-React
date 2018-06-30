@@ -1,10 +1,17 @@
 .App {
-  text-align: center;
   padding-top:30px;
   font-family: 'Courier New', Courier, monospace;
+  margin:auto;
+  width:550px;
+  box-shadow: 
+  0 10px 0 -5px white,
+  0 10px 1px -4px rgba(0,0,0,0.15),
+  0 20px 0 -10px white,
+  0 20px 1px -9px rgba(0,0,0,0.15);
 }
 
 .App-title {
+  text-align: center;
   font-size: 100px;
   font-weight:100;
   color: #EAD7D8;
@@ -13,7 +20,7 @@
 
 .todos-writingSpace {
   height:35px;
-  width:500px;
+  flex-grow: 1;
   border:solid 1px #E6E6E6;
   border-width: 1px 1px 1px 0;
   font-style: italic;
@@ -42,16 +49,13 @@
 
 .todo {
   height:35px;
-  width:550px;
   border:solid 1px #EDEDED;
-  margin:auto;
   list-style: none;
   display:flex;
 }
 
 .fieldSet {
   display: flex;
-  justify-content: center;
 }
 
 .blackButton {
@@ -63,7 +67,7 @@
   justify-content: left;
   padding-left: 15px;
   font-size:20px;
-  flex-grow:1; /*ten element zajmuje wiecej miejsca*/
+  flex-grow:1; 
   padding-top: 7px;
 }
 
@@ -131,19 +135,22 @@
 }
 
 .itemCounter-section {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height:35px;
-  width:550px;
   border: 1px solid #EDEDED;
-  margin:auto;
-  padding-top: 10px;
+  padding: 5px 7px;
   font-size:15px;
 }
 
 .itemCounter-element {
   padding:5px;
   color:#B7B7B7;
-  position:absolute;
+}
+
+.filter .itemCounter-element:not(:last-child) {
+  margin-right: 5px;
 }
 
 .items-left {
@@ -157,18 +164,6 @@
 
 .clear:hover {
   text-decoration: underline;
-}
-
-.all {
- left: 150px;
-}
-
-.active {
-  left: 200px;
-}
-
-.completed {
-  left: 270px;
 }
 
 .active:hover,

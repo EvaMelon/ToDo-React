@@ -149,8 +149,9 @@ class App extends Component {
       <div className="App">
         <h1 className="App-title">todos</h1>
         <div className="fieldSet">
+
         <button className={classNames({
-          "v-button":true,
+          "v-button": true,
           "blackButton": this.areAllItemsDone()
         })}
             onClick={this.toggleAll}
@@ -160,6 +161,7 @@ class App extends Component {
           placeholder="What needs to be done?"
             onKeyPress={this.handleKeyPress}/>
         </div>
+
         <div className="items">
           {this.renderItems()} 
         </div>
@@ -167,6 +169,7 @@ class App extends Component {
         <section className="itemCounter-section">
           <span className="itemCounter-element items-left">
             {this.countCompletedItems()}</span>
+          <div className="filter">
           <button
             className={classNames({
               "itemCounter-element":true,
@@ -191,6 +194,7 @@ class App extends Component {
           })}
           onClick={()=>{this.setFilter("completed")}}
           >Completed</button>
+        </div>
           <button className="itemCounter-element clear"
           onClick={this.clearCompleted} 
           >Clear completed</button>
