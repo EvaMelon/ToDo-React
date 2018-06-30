@@ -9,8 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       filter: "all",
-      items:[{text:"g", done:true}, {text:"u", done:false}],
-      buttonClicked:false
+      items:[{text:"g", done:false}, {text:"u", done:false}]
     };
   }
 
@@ -62,11 +61,12 @@ class App extends Component {
     });
   }
 
-  handleButtonColorChange = () => {
+  toggleAll = () => {
     const items = this.state.items;
     const doneItems = [];
+    const newDone = !this.areAllItemsDone(); 
     for(let i=0; i<items.length; i++) {
-      const doneItem = {...items[i], done:true};
+      const doneItem = {...items[i], done:newDone}; 
       doneItems.push(doneItem);
     }
     this.setState({
@@ -86,7 +86,6 @@ class App extends Component {
     return allDone;
   }
     
-
   countCompletedItems() {
     const items = this.state.items;
     let itemsCount = 0;
@@ -152,14 +151,15 @@ class App extends Component {
         <div className="fieldSet">
         <button className={classNames({
           "v-button":true,
-          "blackButton":this.state.buttonClicked
+          "blackButton": this.areAllItemsDone()
         })}
-            onClick={this.handleButtonColorChange}
+            onClick={this.toggleAll}
         >v</button>
-          <input type="text" className="todos-writingSpace" placeholder="What needs to be done?"
-                 onKeyPress={this.handleKeyPress}/>
+         
+          <input type="text" className="todos-writingSpace" 
+          placeholder="What needs to be done?"
+            onKeyPress={this.handleKeyPress}/>
         </div>
-
         <div className="items">
           {this.renderItems()} 
         </div>
@@ -199,8 +199,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 class TodoItem extends React.Component {
   render() {
