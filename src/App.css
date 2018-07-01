@@ -207,3 +207,12 @@ button.itemCounter-element {
 .todo.editing .todo-text{
   display: none;
 }
+
+.editingField {
+  flex-grow:1;
+  display: none;
+}
+
+.editing .editingField{
+  display: block;
+}

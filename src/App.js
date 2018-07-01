@@ -36,7 +36,8 @@ class App extends Component {
     for(let i = 0; i < allItems.length; i++) {
       if(i==index) {
       const itemToUpdate = allItems[index];
-      const updatedItemText = {...itemToUpdate, text:newText}
+      const updatedItemText = {...itemToUpdate, text:newText} 
+      {/*na koncu nowy atrybut*/}
       editedItems.push(updatedItemText)
       }
      else {
@@ -267,7 +268,7 @@ class TodoItem extends React.Component {
         
         {this.props.text}
       </span>
-      <input type="text" defaultValue={this.props.text}
+      <input className="editingField" type="text" defaultValue={this.props.text}
       onBlur={this.doneEditing}/> {/*wyjscie spoza pola textowego*/}
       <button className={classNames({
           "button-x":true
