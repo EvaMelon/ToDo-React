@@ -29,6 +29,25 @@ class App extends Component {
       items: leftItems
     });
   }
+
+  editItem = (index, newText) => {
+    const allItems = this.state.items;
+    const editedItems = [];
+    for(let i = 0; i < allItems.length; i++) {
+      if(i==index) {
+      const itemToUpdate = allItems[index];
+      const updatedItemText = {...itemToUpdate, text:newText}
+      editedItems.push(updatedItemText)
+      }
+     else {
+        editedItems.push(allItems[i])
+      }
+    }
+    this.setState({
+      items: editedItems
+    });
+  }
+  
   
   handleKeyPress = (event) => { 
     const enterKey = 13;
@@ -43,7 +62,7 @@ class App extends Component {
     }
   }
 
-  handleToggleItem = (index) => {
+  toggleItem = (index) => {
     const oldItems = this.state.items;
     const updatedItems = [];
     for (let i = 0; i < oldItems.length; i++) {
@@ -122,8 +141,9 @@ class App extends Component {
       const todo = <TodoItem
         text={item.text}
         done={item.done}
-        onToggle={() => { this.handleToggleItem(i)} }
+        onToggle={() => { this.toggleItem(i)} }
         onDelete={() => { this.deleteItem(i)} }
+        onEdit={(text) => {this.editItem(i,text )}}
       />;
       if (this.state.filter === "active" && !item.done ) {
         items.push(todo);
@@ -205,13 +225,34 @@ class App extends Component {
 }
 
 class TodoItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false
+    };
+  }
+
+  startEditing = () => {
+    this.setState({
+      editing:true
+    });
+  }
+  
+  doneEditing = (event) => {
+    this.props.onEdit(event.target.value);
+    this.setState({
+      editing:false
+    });
+  }
+
   render() {
    return (
     <div 
       className={
         classNames({
           "todo":true,
-          "done": this.props.done
+          "done": this.props.done,
+          "editing": this.state.editing 
       })}>
       <label className="check-container">
           <input 
@@ -220,9 +261,14 @@ class TodoItem extends React.Component {
           /> 
           <span className="checkmark"></span>
       </label>
-      <span className="todo-text">
+      <span className="todo-text"
+          onDoubleClick={this.startEditing}
+          >
+        
         {this.props.text}
       </span>
+      <input type="text" defaultValue={this.props.text}
+      onBlur={this.doneEditing}/> {/*wyjscie spoza pola textowego*/}
       <button className={classNames({
           "button-x":true
       })}

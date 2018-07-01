@@ -203,3 +203,7 @@ button.itemCounter-element {
 .todo:hover .button-x {
  opacity:1;
 }
+
+.todo.editing .todo-text{
+  display: none;
+}
