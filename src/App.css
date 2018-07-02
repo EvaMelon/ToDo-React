@@ -18,14 +18,28 @@
   padding-bottom:10px;
 }
 
+.v-button,
 .todos-writingSpace {
   height:35px;
+  border: solid 1px #E6E6E6; 
+  padding:12px 0;
+  outline:none;
+}
+
+.v-button {
+  width:50px;
+  color:#E6E6E6;
+  background: white;
+  border-width: 1px 0 1px 1px; 
+  font-size:20px;
+  font-weight: bold;
+  box-sizing:content-box;
+}
+
+.todos-writingSpace {
   flex-grow: 1;
-  border:solid 1px #E6E6E6;
   border-width: 1px 1px 1px 0;
   font-style: italic;
-  outline:none; 
-  padding:0;
 }
 
 .todos-writingSpace::placeholder {
@@ -33,22 +47,9 @@
   font-size:20px;
 }
 
-.v-button{
-  height:35px;
-  width:50px;
-  color:#E6E6E6;
-  background: white;
-  border: solid 1px #E6E6E6; 
-  border-width: 1px 0 1px 1px; 
-  font-size:20px;
-  font-weight: bold;
-  padding:0;
-  box-sizing:content-box;
-  outline:none;
-}
-
 .todo {
   height:35px;
+  padding:10px 0;
   border:solid 1px #EDEDED;
   list-style: none;
   display:flex;
@@ -209,10 +210,21 @@ button.itemCounter-element {
 }
 
 .editingField {
-  flex-grow:1;
+  flex-grow: 1;
   display: none;
 }
 
 .editing .editingField{
   display: block;
+  margin:-12px 0;
+  border:1px solid #AAAAAA;
+  box-shadow: inset 0 0 5px #AAAAAA;
+}
+
+.editing .check-container {
+  visibility: hidden;
+}
+
+.editing .button-x {
+  display: none;
 }
