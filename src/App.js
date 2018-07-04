@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       filter: "all",
-      items:[{text:"g", done:false}, {text:"u", done:false}]
+      items:[{text:"g", done:false}, {text:"u", done:false}],
+      clear:false
     };
   }
 
@@ -94,18 +95,7 @@ class App extends Component {
       buttonClicked:!this.state.buttonClicked
     })
   }
-
-  areAllItemsDone() {
-    let allDone = true;
-    const items = this.state.items;
-    for(let i=0; i<items.length; i++) {
-      if(items[i].done == false) {
-        allDone = false;
-      }
-    }
-    return allDone;
-  }
-    
+  
   countCompletedItems() {
     const items = this.state.items;
     let itemsCount = 0;
@@ -122,6 +112,29 @@ class App extends Component {
     }
   }
 
+  areAllItemsDone() {
+    let allDone = true;
+    const items = this.state.items;
+    for(let i=0; i<items.length; i++) {
+      if(items[i].done == false) {
+        allDone = false;
+      }
+    }
+    return allDone;
+  }
+
+  clearCompletedButton = () => {
+    const items = this.state.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].done == false){
+        return null
+      }
+    }
+    this.setState({
+      clear:true
+    })
+  }
+
   clearCompleted = () => {
     const leftItems = [];
     const items = this.state.items;
@@ -134,6 +147,8 @@ class App extends Component {
       items: leftItems
     });
   }
+
+  //jezeli wszystkie itemy maja done:true, to wtedy zmienia sie setstate clear na true
   
   renderItems() {
     const items = [];
@@ -144,7 +159,7 @@ class App extends Component {
         done={item.done}
         onToggle={() => { this.toggleItem(i)} }
         onDelete={() => { this.deleteItem(i)} }
-        onEdit={(text) => {this.editItem(i,text )}}
+        onEdit={(text) => { this.editItem(i,text)} }
       />;
       if (this.state.filter === "active" && !item.done ) {
         items.push(todo);
@@ -216,7 +231,11 @@ class App extends Component {
           onClick={()=>{this.setFilter("completed")}}
           >Completed</button>
         </div>
-          <button className="itemCounter-element clear"
+          <button className={classNames({
+            "itemCounter-element":true,
+            "clear":true,
+            "noItemsDone":this.clearCompletedButton()
+          })}
           onClick={this.clearCompleted} 
           >Clear completed</button>
         </section> 

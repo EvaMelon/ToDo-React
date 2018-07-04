@@ -228,3 +228,7 @@ button.itemCounter-element {
 .editing .button-x {
   display: none;
 }
+
+.noItemsDone {
+  visibility: hidden;
+}
