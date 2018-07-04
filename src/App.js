@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       filter: "all",
       items:[{text:"g", done:false}, {text:"u", done:false}],
-      clear:false
+    //  clear:false
     };
   }
 
@@ -49,7 +49,6 @@ class App extends Component {
       items: editedItems
     });
   }
-  
   
   handleKeyPress = (event) => { 
     const enterKey = 13;
@@ -123,18 +122,18 @@ class App extends Component {
     return allDone;
   }
 
-  clearCompletedButton = () => {
+  areAllItemsUndone() {
+    let allUndone = true;
     const items = this.state.items;
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].done == false){
-        return null
+    for(let i=0; i<items.length; i++) {
+      if(items[i].done == true) {
+        allUndone = false;
       }
     }
-    this.setState({
-      clear:true
-    })
+    return allUndone;
   }
 
+  
   clearCompleted = () => {
     const leftItems = [];
     const items = this.state.items;
@@ -234,7 +233,7 @@ class App extends Component {
           <button className={classNames({
             "itemCounter-element":true,
             "clear":true,
-            "noItemsDone":this.clearCompletedButton()
+            "noItemsDone":this.areAllItemsUndone()
           })}
           onClick={this.clearCompleted} 
           >Clear completed</button>
